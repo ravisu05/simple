@@ -18,8 +18,9 @@ class _BmiCalculatorState extends State<BmiCalculator> {
     wValue = double.parse(weight.text);
 
     bmi = wValue / (hValue * hValue);
+    print(bmi);
   }
-  TextEditingController bmi = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,9 +66,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
               padding: EdgeInsets.all(20),
               textStyle: TextStyle(fontSize: 20),
             ),
-            onPressed: setState(() {
-              return bmi;
-            });
+            onPressed: calculate,
             child: Text(
               'calculate',
               style: TextStyle(color: Colors.black),
@@ -78,7 +77,9 @@ class _BmiCalculatorState extends State<BmiCalculator> {
           ),
           Container(
             margin: EdgeInsets.all(20),
-
+            child: TextField(
+              decoration: InputDecoration(filled: true),
+            ),
           )
         ],
       ),
