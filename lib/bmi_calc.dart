@@ -8,13 +8,25 @@ class BmiCalculator extends StatefulWidget {
 }
 
 class _BmiCalculatorState extends State<BmiCalculator> {
+  TextEditingController height = TextEditingController();
+  TextEditingController weight = TextEditingController();
+  double bmi = 0;
+  double hValue = 0;
+  double wValue = 0;
+  void calculate() {
+    hValue = double.parse(height.text);
+    wValue = double.parse(weight.text);
+
+    bmi = wValue / (hValue * hValue);
+  }
+  TextEditingController bmi = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.pink,
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: const Center(
+        title: Center(
           child: Text(
             'BMI Calculator',
             style: TextStyle(color: Colors.white),
@@ -22,15 +34,51 @@ class _BmiCalculatorState extends State<BmiCalculator> {
         ),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          //height
           Container(
+            margin: EdgeInsets.all(20),
             child: TextField(
-              decoration: InputDecoration(filled: true,),
+              decoration: InputDecoration(filled: true),
+              controller: height,
             ),
           ),
-          SizedBox(width: 30,),
+          SizedBox(
+            height: 20,
+          ),
+          //weight
           Container(
-            child: TextField(),
+            margin: EdgeInsets.all(20),
+            child: TextField(
+              decoration: InputDecoration(filled: true),
+              controller: weight,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          //button to be clicked
+          TextButton(
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.white,
+              padding: EdgeInsets.all(20),
+              textStyle: TextStyle(fontSize: 20),
+            ),
+            onPressed: setState(() {
+              return bmi;
+            });
+            child: Text(
+              'calculate',
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            margin: EdgeInsets.all(20),
+
           )
         ],
       ),
